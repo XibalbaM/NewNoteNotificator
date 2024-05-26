@@ -17,7 +17,7 @@ suspend fun main() {
     pronote.login(System.getenv("PRONOTE_USER"), System.getenv("PRONOTE_PASS"))
     val notes = pronote.getNotes(Period.THIRD_TRIMESTER).notes
     val notesWithIds = notes.associateWith { it.dateString + it.subject + it.mark }
-    val oldNotes: List<String> = URI("https://raw.githubusercontent.com/XibalbaM/NewNoteNotificator/master/notes.json?token=GHSAT0AAAAAACRTFKCWM4NUXOK5BUIJDG2SZSTTTEQ")
+    val oldNotes: List<String> = URI("https://raw.githubusercontent.com/XibalbaM/NewNoteNotificator/master/notes.json")
         .toURL().readText()
         .let {
             class Token : TypeToken<List<String>>()
