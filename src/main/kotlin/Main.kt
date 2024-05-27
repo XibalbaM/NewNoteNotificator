@@ -27,7 +27,7 @@ suspend fun main() {
     newNotes.forEach {
         val notificationText = "Nouvelle note en ${it.key.subject} : ${it.key.mark}" +
                 if (it.key.title.isNotEmpty()) " (${it.key.title})" else ""
-        URI("https://trigger.macrodroid.com/77230727-b9a3-4a6f-bf5a-84ddffeb1830/new_grade?text="
+        URI("https://trigger.macrodroid.com/${System.getenv("NOTIF_CODE")}/new_grade?text="
                 + URLEncoder.encode(notificationText, "UTF-8")).toURL().readText()
     }
     val file = File("notes.json")
