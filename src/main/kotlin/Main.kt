@@ -23,6 +23,8 @@ suspend fun main() {
             class Token : TypeToken<List<String>>()
             gson.fromJson(it, Token().type)
         }
+    println("Old notes: $oldNotes")
+    println("New notes: $notesWithIds")
     val newNotes = notesWithIds.filter { it.value !in oldNotes }
     newNotes.forEach {
         val notificationText = "Nouvelle note en ${it.key.subject} : ${it.key.mark}" +
