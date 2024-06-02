@@ -1,10 +1,5 @@
 import com.google.gson.reflect.TypeToken
-import fr.xibalba.pronoteKt.Ent
-import fr.xibalba.pronoteKt.Period
-import fr.xibalba.pronoteKt.PronoteKt
-import fr.xibalba.pronoteKt.SessionType
-import fr.xibalba.pronoteKt.getNotes
-import fr.xibalba.pronoteKt.gson
+import fr.xibalba.pronoteKt.*
 import java.io.File
 import java.net.URI
 import java.net.URLEncoder
@@ -14,7 +9,10 @@ suspend fun main() {
     val pronote = PronoteKt("https://0740006e.index-education.net/pronote", SessionType.STUDENT, Ent.AUVERGNE_RHONE_ALPES)
     pronote.login(System.getenv("PRONOTE_USER"), System.getenv("PRONOTE_PASS"))
     val notes = pronote.getNotes(Period.THIRD_TRIMESTER).notes
-    val notesWithIds = notes.associateWith { (it.dateString+it.subject+it.mark+it.title).hashCode().toHexString() }
+    val notesWithIds = notes.associateWith {
+        val data = (it.dateString+it.subject+it.mark+it.title)
+        md5(data.toByteArray()).toHexString()
+    }
     val oldNotes: List<String> = URI("https://raw.githubusercontent.com/XibalbaM/NewNoteNotificator/master/notes.json")
         .toURL().readText()
         .let {
