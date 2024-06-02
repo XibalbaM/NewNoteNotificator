@@ -10,7 +10,7 @@ suspend fun main() {
     pronote.login(System.getenv("PRONOTE_USER"), System.getenv("PRONOTE_PASS"))
     val notes = pronote.getNotes(Period.THIRD_TRIMESTER).notes
     val notesWithIds = notes.associateWith {
-        val data = (it.dateString+it.subject+it.mark+it.title)
+        val data = (it.subject+it.mark+it.title)
         md5(data.toByteArray()).toHexString()
     }
     val oldNotes: List<String> = URI("https://raw.githubusercontent.com/XibalbaM/NewNoteNotificator/master/notes.json")
