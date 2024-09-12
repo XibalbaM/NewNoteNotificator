@@ -14,7 +14,7 @@ repositories {
 
 dependencies {
     testImplementation(kotlin("test"))
-    implementation("com.github.XibalbaM:PronoteKt:0e10371989")
+    implementation("com.github.XibalbaM:PronoteKt:374ac610a6")
     implementation("com.google.code.gson:gson:2.10.1")
 }
 
