@@ -6,7 +6,7 @@ import java.net.URLEncoder
 
 @OptIn(ExperimentalStdlibApi::class)
 suspend fun main() {
-    val pronote = PronoteKt("https://0740006e.index-education.net/pronote", SessionType.STUDENT, Ent.AUVERGNE_RHONE_ALPES)
+    val pronote = PronoteKt("https://0740006e.index-education.net/pronote", SessionType.STUDENT, Ent.AUVERGNE_RHONE_ALPES, debug = true)
     pronote.login(System.getenv("PRONOTE_USER"), System.getenv("PRONOTE_PASS"))
     val notes = pronote.getNotes(Period.FIRST_SEMESTER).notes
     val notesWithIds = notes.associateWith {
